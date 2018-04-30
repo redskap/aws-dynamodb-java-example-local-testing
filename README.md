@@ -2,7 +2,7 @@
 
 Example Gradle Java project for using embedded AWS DynamoDB for local testing.
 
-The official example shows you how to use AWS DynamoDB with Maven, but it does not contain details about Gradle setup. This simple example describes how to use AWS DynamoDB for local testing with Gradle. It also works from your IDE (e.g.: IntelliJ IDEA).  
+The official AWS DynamoDB example shows you how to use AWS DynamoDB with Maven, but it does not contain details about Gradle setup or how to run tests from your IDE (e.g.: IntelliJ IDEA). This example provides details about this missing areas.
 
 **You can copy the content to reuse it in your own project.**
  
@@ -91,23 +91,23 @@ You can get the version numbers from each regions:
 
 ## Initialize sqlite4java for testing
 
-AWS DynamoDB provides possibility to test locally and it requires `sqlite4java.library.path` system property to be set. In the [official example](https://github.com/aws-samples/aws-dynamodb-examples) it is set for the maven project. 
+AWS DynamoDB provides possibility to test locally and it requires `sqlite4java.library.path` system property to be set. In the [official example](https://github.com/aws-samples/aws-dynamodb-examples) it is set for the Maven project. 
 
 If you run it from Gradle or from your IDE, local database might not start as the sqlite4java native libraries are not avaialiable. These are downloaded as a dependency of `DynamoDBLocal` artifact, but it is not visible by default. Sqlite4java loads it from the path defined by `sqlite4java.library.path` system property.  
 
 If it is not set or not valid, you probably see something similar in the logs:
 ```
-WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-i386-1.0.392 in java.library.path
+WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-i386-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: error running job queue
-com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-i386-1.0.392 in java.library.path
-Caused by: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-i386-1.0.392 in java.library.path
+com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-i386-1.0.392 in java.library.path
+Caused by: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-i386-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: stopped abnormally, reincarnation is not possible for in-memory database
 ```
 ```
-WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-amd64-1.0.392 in java.library.path
+WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-amd64-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: error running job queue
-com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-amd64-1.0.392 in java.library.path
-Caused by: java.lang.UnsatisfiedLinkError: no libsqlite4java-linux-amd64-1.0.392 in java.library.path
+com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-amd64-1.0.392 in java.library.path
+Caused by: java.lang.UnsatisfiedLinkError: no sqlite4java-linux-amd64-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: stopped abnormally, reincarnation is not possible for in-memory database
 ```
 ```
@@ -125,10 +125,10 @@ Caused by: java.lang.UnsatisfiedLinkError: no sqlite4java-win32-x86-1.0.392 in j
 SEVERE: [sqlite] SQLiteQueue[]: stopped abnormally, reincarnation is not possible for in-memory database
 ```
 ```
-WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-osx-1.0.392 in java.library.path
+WARNING: [sqlite] cannot open DB[1]: com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-osx-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: error running job queue
-com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no libsqlite4java-osx-1.0.392 in java.library.path
-Caused by: java.lang.UnsatisfiedLinkError: no libsqlite4java-osx-1.0.392 in java.library.path
+com.almworks.sqlite4java.SQLiteException: [-91] cannot load library: java.lang.UnsatisfiedLinkError: no sqlite4java-osx-1.0.392 in java.library.path
+Caused by: java.lang.UnsatisfiedLinkError: no sqlite4java-osx-1.0.392 in java.library.path
 SEVERE: [sqlite] SQLiteQueue[]: stopped abnormally, reincarnation is not possible for in-memory database
 ```
 

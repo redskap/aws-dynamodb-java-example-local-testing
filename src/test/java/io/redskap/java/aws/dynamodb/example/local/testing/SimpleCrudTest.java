@@ -18,7 +18,7 @@ public class SimpleCrudTest {
 
   @BeforeClass
   public static void setUpClass() {
-    //AwsDynamoDbHelper.initSqLite();
+    AwsDynamoDbHelper.initSqLite();
 
     amazonDynamoDBLocal = DynamoDBEmbedded.create();
 
