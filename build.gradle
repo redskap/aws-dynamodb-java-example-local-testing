@@ -1,0 +1,56 @@
+group 'io.redskap.java.aws.dynamodb.example'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+//    maven {
+//        name "DynamoDB Local Release Repository - Asia Pacific (Mumbai) Region"
+//        url "https://s3.ap-south-1.amazonaws.com/dynamodb-local-mumbai/release"
+//    }
+//
+//    maven {
+//        name "DynamoDB Local Release Repository - Asia Pacific (Singapore) Region"
+//        url "https://s3-ap-southeast-1.amazonaws.com/dynamodb-local-singapore/release"
+//    }
+//
+//    maven {
+//        name "DynamoDB Local Release Repository - Asia Pacific (Tokyo) Region"
+//        url "https://s3-ap-northeast-1.amazonaws.com/dynamodb-local-tokyo/release"
+//    }
+
+    maven {
+        name "DynamoDB Local Release Repository - EU (Frankfurt) Region"
+        url "https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/release"
+    }
+
+//    maven {
+//        name "DynamoDB Local Release Repository - South America (São Paulo) Region"
+//        url "https://s3-sa-east-1.amazonaws.com/dynamodb-local-sao-paulo"
+//    }
+//
+//    maven {
+//        name "DynamoDB Local Release Repository - US West (Oregon) Region"
+//        url "https://s3-us-west-2.amazonaws.com/dynamodb-local/release"
+//    }
+}
+
+dependencies {
+
+    compile group: 'com.amazonaws', name:'aws-java-sdk-dynamodb', version: '1.11.319'
+    compile group: 'com.google.guava', name: 'guava', version: '25.0-jre'
+
+    // Version numbers for each regions can be get from:
+    // dynamodb-local-mumbai - https://s3.ap-south-1.amazonaws.com/dynamodb-local-mumbai/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    // dynamodb-local-singapore - https://s3-ap-southeast-1.amazonaws.com/dynamodb-local-singapore/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    // dynamodb-local-tokyo - https://s3-ap-northeast-1.amazonaws.com/dynamodb-local-tokyo/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    // dynamodb-local-frankfurt - https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    // dynamodb-local-sao-paulo - https://s3-sa-east-1.amazonaws.com/dynamodb-local-sao-paulo/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    // dynamodb-local-oregon - https://s3-us-west-2.amazonaws.com/dynamodb-local/release/com/amazonaws/DynamoDBLocal/maven-metadata.xml
+    testCompile group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.11.86'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
