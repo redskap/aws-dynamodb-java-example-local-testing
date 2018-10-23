@@ -1,4 +1,4 @@
-# AWS DynamoDB Java Local Testing Example
+# AWS DynamoDB Java Local Testing Example [![Build Status](https://travis-ci.com/redskap/aws-dynamodb-java-example-local-testing.svg?branch=master)](https://travis-ci.com/redskap/aws-dynamodb-java-example-local-testing)
 
 Example Gradle Java project for using embedded AWS DynamoDB for local testing.
 
