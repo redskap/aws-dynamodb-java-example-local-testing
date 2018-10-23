@@ -77,7 +77,7 @@ For each regions, first you need to set the proper repository:
 Then set the dependency:
 ```groovy
 dependencies {
-    testCompile group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.11.86'
+    testCompile group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.11.119'
 }
 ```
 
@@ -93,7 +93,7 @@ You can get the version numbers from each regions:
 
 AWS DynamoDB provides possibility to test locally and it requires `sqlite4java.library.path` system property to be set. In the [official example](https://github.com/aws-samples/aws-dynamodb-examples) it is set for the Maven project. 
 
-If you run it from Gradle or from your IDE, local database might not start as the sqlite4java native libraries are not avaialiable. These are downloaded as a dependency of `DynamoDBLocal` artifact, but it is not visible by default. Sqlite4java loads it from the path defined by `sqlite4java.library.path` system property.  
+If you run it from Gradle or from your IDE, local database might not start as the sqlite4java native libraries are not available. These are downloaded as a dependency of `DynamoDBLocal` artifact, but it is not visible by default. Sqlite4java loads it from the path defined by `sqlite4java.library.path` system property.  
 
 If it is not set or not valid, you probably see something similar in the logs:
 ```

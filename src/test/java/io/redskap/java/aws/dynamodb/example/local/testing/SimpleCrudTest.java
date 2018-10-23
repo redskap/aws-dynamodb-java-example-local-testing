@@ -5,20 +5,21 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.local.embedded.DynamoDBEmbedded;
 import com.amazonaws.services.dynamodbv2.local.shared.access.AmazonDynamoDBLocal;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SimpleCrudTest {
 
   private static AmazonDynamoDBLocal amazonDynamoDBLocal;
   private SimpleCrud simpleCrud;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUpClass() {
-    AwsDynamoDbHelper.initSqLite();
+    System.clearProperty("sqlite4java.library.path");
+    AwsDynamoDbLocalTestUtils.initSqLite();
 
     amazonDynamoDBLocal = DynamoDBEmbedded.create();
 
@@ -26,7 +27,7 @@ public class SimpleCrudTest {
     new SimpleCrud(createDocumentInterfaceClient()).initDb(new ProvisionedThroughput(1L, 1L));
   }
 
-  @AfterClass
+  @AfterAll
   public static void tearDownClass() {
     amazonDynamoDBLocal.shutdown();
   }
@@ -36,7 +37,7 @@ public class SimpleCrudTest {
     return new DynamoDB(client);
   }
 
-  @Before
+  @BeforeEach
   public void setUp() {
     simpleCrud = new SimpleCrud(createDocumentInterfaceClient());
   }
@@ -55,15 +56,15 @@ public class SimpleCrudTest {
     // Then
     final String actual = simpleCrud.retrieveValue(key);
 
-    Assert.assertEquals(expected, actual);
+    Assertions.assertEquals(expected, actual);
   }
 
-  @Test(expected = IllegalStateException.class)
-  public void when_RetrieveValueCalledWithNotStoredKey_then_ExceotionIsThrown() {
+  @Test
+  public void when_RetrieveValueCalledWithNotStoredKey_then_ExceptionIsThrown() {
     // Given
     final int key = 15;
 
-    // When
-    simpleCrud.retrieveValue(key);
+    // Then
+    Assertions.assertThrows(IllegalStateException.class, () -> simpleCrud.retrieveValue(key), "Excepted exception is not thrown for invalid key");
   }
 }
