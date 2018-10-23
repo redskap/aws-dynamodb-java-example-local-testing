@@ -4,6 +4,8 @@ Example Gradle Java project for using embedded AWS DynamoDB for local testing.
 
 The official AWS DynamoDB example shows you how to use AWS DynamoDB with Maven, but it does not contain details about Gradle setup or how to run tests from your IDE (e.g.: IntelliJ IDEA). This example provides details about these missing areas.
 
+You only need to call [`AwsDynamoDbLocalTestUtils#initSqLite()`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/AwsDynamoDbLocalTestUtils.java#L30) in test classes before you plan to use the local database. You can find detailed description below about setting up local testing.
+
 **You can copy the content to reuse it in your own project.**
  
 ## Setting Up DynamoDB Local with Gradle
