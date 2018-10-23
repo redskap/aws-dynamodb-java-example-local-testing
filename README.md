@@ -132,11 +132,11 @@ Caused by: java.lang.UnsatisfiedLinkError: no sqlite4java-osx-1.0.392 in java.li
 SEVERE: [sqlite] SQLiteQueue[]: stopped abnormally, reincarnation is not possible for in-memory database
 ```
 
-The example contains a simple [`AwsDynamoDbHelper`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/AwsDynamoDbHelper.java) class that can be used for initializing this property for DynamoDB at runtime, so it will work from both your IDE and from Gradle.
+The example contains a simple [`AwsDynamoDbLocalTestUtils`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/AwsDynamoDbLocalTestUtils.java) class that can be used for initializing this property for DynamoDB at runtime, so it will work from both your IDE and from Gradle.
 
-You only need to call [`AwsDynamoDbHelper#initSqLite()`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/AwsDynamoDbHelper.java#L17) before you plan to use the local database. If the property is already initialized, the call will skip initialization.
+You only need to call [`AwsDynamoDbLocalTestUtils#initSqLite()`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/AwsDynamoDbLocalTestUtils.java#L30) before you plan to use the local database. If the property is already initialized, the call will skip initialization.
 
-There is an example test, that uses the local database. The test calls the initialization at the `@BeforeClass` setUp method [`SimpleCrudTest`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/SimpleCrudTest.java#L19)
+There is an example test, that uses the local database. The test calls the initialization at the `@BeforeAll` setUp method [`SimpleCrudTest`](src/test/java/io/redskap/java/aws/dynamodb/example/local/testing/SimpleCrudTest.java#L21)
 
 ## Build
 

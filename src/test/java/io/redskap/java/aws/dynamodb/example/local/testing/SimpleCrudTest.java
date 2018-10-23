@@ -17,8 +17,7 @@ public class SimpleCrudTest {
   private SimpleCrud simpleCrud;
 
   @BeforeAll
-  public static void setUpClass() {
-    System.clearProperty("sqlite4java.library.path");
+  public static void setUpClass() {    
     AwsDynamoDbLocalTestUtils.initSqLite();
 
     amazonDynamoDBLocal = DynamoDBEmbedded.create();
